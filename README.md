@@ -23,23 +23,23 @@ The following 6 classification models were implemented and evaluated:
 
 | ML Model Name          | Accuracy | AUC      | Precision | Recall   | F1 Score | MCC      |
 |------------------------|----------|----------|-----------|----------|----------|----------|
-| Logistic Regression    | 0.8176   | 0.8615   | 0.6824    | 0.5818   | 0.6281   | 0.5111   |
+| Logistic Regression    | 0.8197   | 0.8610   | 0.6901    | 0.5791   | 0.6297   | 0.5152   |
 | Decision Tree          | 0.7246   | 0.6566   | 0.4809    | 0.5067   | 0.4935   | 0.3048   |
-| kNN                    | 0.7757   | 0.7867   | 0.5877    | 0.5121   | 0.5473   | 0.4008   |
+| kNN                    | 0.7793   | 0.7812   | 0.5975    | 0.5094   | 0.5499   | 0.4072   |
 | Naive Bayes            | 0.7580   | 0.8429   | 0.5293    | 0.7748   | 0.6289   | 0.4770   |
-| Random Forest          | 0.7970   | 0.8369   | 0.6629    | 0.4745   | 0.5531   | 0.4364   |
+| Random Forest          | 0.8006   | 0.8624   | 0.6901    | 0.4477   | 0.5431   | 0.4390   |
 | XGBoost                | 0.7942   | 0.8365   | 0.6361    | 0.5201   | 0.5723   | 0.4424   |
 
 ## 4. Observations
 
-- **Logistic Regression**: Achieved the highest **Accuracy (81.76%)** and **MCC (0.5111)**. It provides a balanced performance between Precision and Recall. It is a robust baseline and performs surprisingly well on this dataset.
-- **Naive Bayes**: While having lower accuracy, it stands out with the highest **Recall (77.48%)**. This makes it useful if the business goal is to capture as many churners as possible, even at the cost of more false positives.
-- **Decision Tree**: Performed the worst across almost all metrics, likely due to overfitting on the training data.
-- **Ensemble Models (Random Forest & XGBoost)**: They performed well (around 79% accuracy) but did not outperform Logistic Regression in this specific split/configuration. They might require further hyperparameter tuning to surpass the linear model.
-- **kNN**: Showed moderate performance but is computationally more expensive during inference compared to other models.
+- **Logistic Regression**: Achieved the best overall performer with the highest **Accuracy (81.97%)** and **MCC (0.5152)**.
+- **Random Forest**: Achieved the highest **AUC Score (0.8624)** and **Precision (0.6901)** of all models. This indicates it is excellent at ranking customers by risk and minimizing false alarms (high precision), though its recall is lower (0.4477).
+- **Naive Bayes**: While having lower overall accuracy, it retains the highest **Recall (77.48%)**. This model is the best choice if the primary business goal is to catch every potential churner, even if it means contacting some loyal customers by mistake (higher false positives).
+- **kNN**: Performance has improved with recent tuning (Accuracy ~78%), making it a competitive mid-tier model, though still computationally heavier than linear models.
+- **Decision Tree**: Showed moderate performance and performing model across almost all metrics, likely due to overfitting on the training data.
 
 ## 5. Deployment
 The application is built using **Streamlit**.
-- upload a dataset (CSV) to see predictions.
+- Upload a dataset (CSV) to see predictions.
 - Choose from any of the 6 trained models.
 - View evaluation metrics and confusion matrix.
